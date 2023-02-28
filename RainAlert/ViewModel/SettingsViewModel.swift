@@ -14,7 +14,7 @@ protocol SettingsViewModelDelegate : SettingsTableViewController {
 
 enum Setting : String, CaseIterable {
     case temperature = "temperature"
-    
+    case headsup = "headsup"
 }
 enum Temp : String, CaseIterable  {
     case fahrenheit = "fahrenheit"
@@ -31,8 +31,14 @@ class SettingsViewModel {
         slider.bounds = .init(x: 0, y: 0, width: 100, height: cell.bounds.height*0.9)
         slider.center.y = cell.frame.height/2
         slider.center.x = cell.frame.width - (slider.frame.width/2) - 20
-        slider.minimumValue = 0
-        slider.maximumValue = 100
+        slider.minimumValue = 1
+        slider.maximumValue = 60
+        let headsup = UserDefaults.standard.integer(forKey: "headsup")
+        if headsup == 0 {
+            slider.value = 30
+        } else {
+            slider.value = Float(headsup)
+        }
         slider.addTarget(self, action: #selector(sliderDidSlide(_:)), for: .valueChanged)
         slider.isUserInteractionEnabled = true
     
@@ -53,7 +59,7 @@ class SettingsViewModel {
         sliderLabel = UILabel(frame: CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: 30, height: 30))
             
         
-        sliderLabel.center = .init(x: cell.frame.width/2, y: cell.frame.height/2)
+        sliderLabel.center = .init(x: slider.frame.origin.x - 10, y: cell.frame.height/2)
         sliderLabel.text = String(Int(slider.value))
         
         cell.addSubview(sliderLabel)

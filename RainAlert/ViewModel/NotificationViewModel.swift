@@ -18,13 +18,14 @@ class NotificationViewModel  {
     
     let notificationCenter = UNUserNotificationCenter.current()
     
-    
-
-    
-    
-    
-    
-    
+    var notificationHeadsUp : Int {
+         let headsup = UserDefaults.standard.integer(forKey: "headsup")
+        if headsup == 0 {
+            return 30
+        } else {
+            return headsup
+        }
+    }
     
     func pendingRequests () async -> [UNNotificationRequest] {
         let requests = await notificationCenter.pendingNotificationRequests()
@@ -80,7 +81,7 @@ class NotificationViewModel  {
      */
     func notify (when eventTime:Date, type:PrecipitationType) {
         
-        let notificationTime = Date(timeInterval: -(60*30), since: eventTime)
+        let notificationTime = Date(timeInterval: -(60*Double(notificationHeadsUp)), since: eventTime)
 
         
         print("notification has been set to \(notificationTime.formatted(date: .numeric, time: .shortened))")
@@ -109,8 +110,9 @@ class NotificationViewModel  {
     
     
     func removeNotification (_ date:Date) {
-        let notificationTime = Date(timeInterval: -(60*30), since: date)
-        print("Removing notification from \(notificationTime)")
+        let notificationTime = Date(timeInterval: -(60*Double(notificationHeadsUp)), since: date)
+        
+        print("Removing notification from \(notificationTime.formatted(date: .numeric, time: .shortened))")
         
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [date.description])
     }

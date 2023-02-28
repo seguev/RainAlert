@@ -33,26 +33,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print(#function)
+        
         
         switch manager.authorizationStatus {
         case .notDetermined:
-            print("notDetermined")
+//            print("notDetermined")
             manager.requestAlwaysAuthorization()
 
         case .restricted, .denied:
-            print("restricted")
+//            print("restricted")
             manager.requestAlwaysAuthorization()
             
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             
         case .authorizedAlways, .authorizedWhenInUse:
-            print("authorizedAlways")
+//            print("authorizedAlways")
             manager.startUpdatingLocation()
 
         @unknown default:
             manager.requestAlwaysAuthorization()
-            print("default")
+//            print("default")
         }
         
     }
@@ -68,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func procceedInOneSec (_ location:CLLocation) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             NotificationCenter.default.post(name: isAuthorizeNotification, object: location)
-            print("this shoud print after viewDidLoad()")
         }
     }
     

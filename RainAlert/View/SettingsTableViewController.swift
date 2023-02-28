@@ -45,6 +45,8 @@ class SettingsTableViewController: UITableViewController, SettingsViewModelDeleg
         
         if settings[indexPath.row] == .temperature {
             cell.addSubview(viewModel.addCellSegmentedControl(cell))
+        } else if settings[indexPath.row] == .headsup {
+            cell.addSubview(viewModel.addCellSlider(cell))
         }
         
         return cell
@@ -64,7 +66,9 @@ class SettingsTableViewController: UITableViewController, SettingsViewModelDeleg
         }
         
         if let slider {
-            UserDefaults.standard.set(slider.value, forKey: "sliderValue")}
+            
+            UserDefaults.standard.set(Int(slider.value), forKey: "headsup")
+        }
         
         if let segmentedControl, let title = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex) {
             UserDefaults.standard.set(title, forKey: "unit")
