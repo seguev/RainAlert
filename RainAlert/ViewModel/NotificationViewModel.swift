@@ -78,11 +78,12 @@ class NotificationViewModel  {
     
     /**
      identifier = eventTime.description, trigger = eventTime - 30m .
+     - return the scheduled time.
      */
-    func notify (when eventTime:Date, type:PrecipitationType) {
+    func notify (when eventTime:Date, type:PrecipitationType) -> Date? {
         
         let notificationTime = Date(timeInterval: -(60*Double(notificationHeadsUp)), since: eventTime)
-
+        return notificationTime
         
         print("notification has been set to \(notificationTime.formatted(date: .numeric, time: .shortened))")
         
@@ -108,11 +109,15 @@ class NotificationViewModel  {
     
     
     
-    
-    func removeNotification (_ date:Date) {
+    /**
+     - return the scheduled time.
+     */
+    func removeNotification (_ date:Date) -> Date? {
         let notificationTime = Date(timeInterval: -(60*Double(notificationHeadsUp)), since: date)
         
         print("Removing notification from \(notificationTime.formatted(date: .numeric, time: .shortened))")
+        
+        return notificationTime
         
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [date.description])
     }

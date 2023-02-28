@@ -89,25 +89,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, WeatherVie
         currentWeatherView.layer.shadowRadius = 3
     }
     
-//protocol's responsability now
-    /*
-    private func updateUI(_ weather:CurrentWeather) {
-        guard let currentWeather = self.currentWeather else {fatalError()}
 
-        DispatchQueue.main.async {
-            self.setRainNotificationButton.isHidden = false
-            self.currentTempLabel.isHidden = false
-            self.currentConditionLabel.isHidden = false
-            self.currentConditionImageLabel.isHidden = false
-            self.currentTempLabel.text = String(format: "%.1f", weather.temperature.value)+" °C"
-            self.currentConditionLabel.text = weather.condition.description
-            self.currentConditionImageLabel.text = setImageEmoji(weather.condition)
-            self.dayCollectionView.reloadData()
-        }
-
-
-    }
-*/
     
     
     
@@ -259,6 +241,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+
      
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -273,15 +256,44 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
         
         let notificationDate = rainForecast[indexPath.row].start
         if isSelected {
-            notificationViewModel.notify(when: notificationDate,type: precipitation)
+            let scheduledDate = notificationViewModel.notify(when: notificationDate,type: precipitation)
+            showNotificationSetPopup("notification has been set to \(scheduledDate!.formatted(date: .omitted, time: .shortened))")
+
         } else {
-            notificationViewModel.removeNotification(notificationDate)
+            let scheduledDate = notificationViewModel.removeNotification(notificationDate)
+            showNotificationSetPopup("notification has been removed from \(scheduledDate!.formatted(date: .omitted, time: .shortened))")
         }
+        
         
         tableView.reloadData()
     }
 
-    
+    private func showNotificationSetPopup (_ text:String) {
+        let label = UILabel(frame: .init(x: 0, y: 0, width: 180, height: 60))
+        label.numberOfLines = 0
+        label.text = text
+        label.textAlignment = .center
+        label.textColor = .white
+        label.center = .init(x: view.center.x, y: view.frame.height - label.frame.height )
+        label.backgroundColor = .black
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 10
+        label.alpha = 0
+        
+        view.addSubview(label)
+        label.bringSubviewToFront(view)
+        
+        UIView.animate(withDuration: 0.2) {
+            label.alpha = 0.7
+        }
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            UIView.animate(withDuration: 0.2, delay: 1) {
+                label.alpha = 0
+            } completion: { _ in
+                label.removeFromSuperview()
+            }
+        }
+    }
 }
 
 
