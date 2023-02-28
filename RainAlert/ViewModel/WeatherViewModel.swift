@@ -23,7 +23,6 @@ extension WeatherViewModelDelegate {
         DispatchQueue.main.async {
             self.upperActivityIndicator.stopAnimating()
             self.activityIndicator.stopAnimating()
-            self.setRainNotificationButton.isHidden = false
             self.currentTempLabel.isHidden = false
             self.currentConditionLabel.isHidden = false
             self.currentConditionImageLabel.isHidden = false
@@ -31,6 +30,7 @@ extension WeatherViewModelDelegate {
             self.currentConditionLabel.text = self.currentWeather!.condition.description
             self.currentConditionImageLabel.text = setImageEmoji(self.currentWeather!.condition)
             self.dayCollectionView.reloadData()
+            self.forecastTableView.reloadData()
         }
     }
     

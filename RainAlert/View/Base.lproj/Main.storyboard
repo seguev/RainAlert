@@ -38,7 +38,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CRA-Sw-K6W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3424" y="748"/>
+            <point key="canvasLocation" x="3572" y="-18"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="YNa-vo-1Hd">
@@ -176,36 +176,44 @@
                                     <constraint firstAttribute="trailing" secondItem="TlE-ij-A3x" secondAttribute="trailing" constant="5" id="yXW-Pk-CXG"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-Sj-7ji">
-                                <rect key="frame" x="107.33333333333333" y="566" width="178.66666666666669" height="34.333333333333371"/>
-                                <color key="tintColor" name="Color1"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Set Rain Notification">
-                                    <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" name="Color2"/>
-                                    </backgroundConfiguration>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jzP-zh-NvH">
+                                <rect key="frame" x="0.0" y="514" width="393" height="304"/>
+                                <color key="backgroundColor" name="Color4"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="rainCell" id="o4F-JL-Jc6">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o4F-JL-Jc6" id="07k-7g-JbF">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" name="Color3"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Color3"/>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <action selector="rainButtonPressed:" destination="Mo9-9W-0eh" eventType="touchUpInside" id="tqC-L9-sZY"/>
+                                    <outlet property="dataSource" destination="Mo9-9W-0eh" id="xd8-rg-9Jc"/>
+                                    <outlet property="delegate" destination="Mo9-9W-0eh" id="Lgq-WE-NgK"/>
                                 </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="T2G-3K-cIt"/>
                         <color key="backgroundColor" name="Color4"/>
                         <constraints>
-                            <constraint firstItem="lPa-Sj-7ji" firstAttribute="centerX" secondItem="mNN-bn-ic7" secondAttribute="centerX" id="9DE-CM-GDp"/>
+                            <constraint firstItem="jzP-zh-NvH" firstAttribute="trailing" secondItem="T2G-3K-cIt" secondAttribute="trailing" id="9ia-zN-Kb9"/>
                             <constraint firstItem="IXj-cH-0Qa" firstAttribute="top" secondItem="T2G-3K-cIt" secondAttribute="top" constant="35" id="EUJ-ND-imF"/>
                             <constraint firstItem="7nG-C4-LrA" firstAttribute="centerX" secondItem="mNN-bn-ic7" secondAttribute="centerX" id="Gio-sa-jsf"/>
+                            <constraint firstItem="jzP-zh-NvH" firstAttribute="leading" secondItem="T2G-3K-cIt" secondAttribute="leading" id="HWB-Sd-f3F"/>
                             <constraint firstItem="7nG-C4-LrA" firstAttribute="centerY" secondItem="mNN-bn-ic7" secondAttribute="centerY" id="JFd-J0-1MR"/>
+                            <constraint firstItem="jzP-zh-NvH" firstAttribute="bottom" secondItem="T2G-3K-cIt" secondAttribute="bottom" id="LZJ-De-dal"/>
                             <constraint firstItem="yi9-Ho-Cb1" firstAttribute="centerX" secondItem="mNN-bn-ic7" secondAttribute="centerX" id="Sxi-JW-lgX"/>
                             <constraint firstItem="haQ-vJ-YWU" firstAttribute="centerX" secondItem="mNN-bn-ic7" secondAttribute="centerX" id="UEh-pS-WY4"/>
                             <constraint firstItem="yi9-Ho-Cb1" firstAttribute="top" secondItem="IXj-cH-0Qa" secondAttribute="bottom" constant="20" id="aa0-eA-wET"/>
                             <constraint firstItem="haQ-vJ-YWU" firstAttribute="centerY" secondItem="mNN-bn-ic7" secondAttribute="centerY" id="f48-Om-jBj"/>
                             <constraint firstItem="7nG-C4-LrA" firstAttribute="leading" secondItem="T2G-3K-cIt" secondAttribute="leading" id="hpX-zb-Uuw"/>
                             <constraint firstItem="IXj-cH-0Qa" firstAttribute="centerX" secondItem="mNN-bn-ic7" secondAttribute="centerX" id="qRc-YC-WZ9"/>
-                            <constraint firstItem="lPa-Sj-7ji" firstAttribute="top" secondItem="7nG-C4-LrA" secondAttribute="bottom" constant="60" id="uHr-5F-GvL"/>
                             <constraint firstItem="7nG-C4-LrA" firstAttribute="trailing" secondItem="T2G-3K-cIt" secondAttribute="trailing" id="zD1-6X-63v"/>
+                            <constraint firstItem="jzP-zh-NvH" firstAttribute="top" secondItem="7nG-C4-LrA" secondAttribute="bottom" constant="8" symbolic="YES" id="zsU-bn-gQG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="J0t-Vs-DWc">
@@ -240,46 +248,14 @@
                         <outlet property="currentTempLabel" destination="yhs-11-aqZ" id="tIk-g7-QBs"/>
                         <outlet property="currentWeatherView" destination="yi9-Ho-Cb1" id="TIj-dK-Cpn"/>
                         <outlet property="dayCollectionView" destination="7nG-C4-LrA" id="WBX-yD-wSt"/>
+                        <outlet property="forecastTableView" destination="jzP-zh-NvH" id="Wxc-9r-KlX"/>
                         <outlet property="notificationButton" destination="4Dg-Mu-dX8" id="QY8-Qi-dK9"/>
-                        <outlet property="setRainNotificationButton" destination="lPa-Sj-7ji" id="APb-R8-oEU"/>
                         <outlet property="upperActivityIndicator" destination="JOV-mG-UTo" id="fPn-Sz-ZiO"/>
-                        <segue destination="LIh-C7-949" kind="presentation" identifier="toRainTable" id="J90-0F-4no"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fRd-65-ZVE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2585.4961832061067" y="-18.30985915492958"/>
-        </scene>
-        <!--Rain Table View Controller-->
-        <scene sceneID="Ld4-Lp-Y22">
-            <objects>
-                <tableViewController id="LIh-C7-949" customClass="RainTableViewController" customModule="RainAlert" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="3gC-Df-C0K">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Color4"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="rainCell" id="7h6-gb-hdr">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7h6-gb-hdr" id="BbU-vg-oQ0">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="tintColor" name="Color2"/>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" name="Color3"/>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="LIh-C7-949" id="0b3-hU-GxP"/>
-                            <outlet property="delegate" destination="LIh-C7-949" id="8ah-zN-N7X"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="TfF-TU-pcd"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kl2-vw-1UD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3423.6641221374043" y="-18.30985915492958"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="A91-D9-Ys2">
@@ -305,12 +281,6 @@
     </scenes>
     <resources>
         <image name="iphone.gen2.radiowaves.left.and.right" catalog="system" width="128" height="85"/>
-        <namedColor name="Color1">
-            <color red="0.33000001311302185" green="0.46500000357627869" blue="0.88999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Color2">
-            <color red="0.45199999213218689" green="0.72299998998641968" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Color3">
             <color red="0.64399999380111694" green="0.83300000429153442" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

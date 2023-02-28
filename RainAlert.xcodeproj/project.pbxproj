@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		603689A42958784B009C9945 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603689A32958784B009C9945 /* MainViewController.swift */; };
-		603689A629587B29009C9945 /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603689A529587B29009C9945 /* DayCollectionViewCell.swift */; };
+		603689A629587B29009C9945 /* dayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603689A529587B29009C9945 /* dayCollectionViewCell.swift */; };
 		603C65F0293DE1B900233151 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603C65EF293DE1B900233151 /* AppDelegate.swift */; };
 		603C65F2293DE1B900233151 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603C65F1293DE1B900233151 /* SceneDelegate.swift */; };
 		603C65F7293DE1B900233151 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 603C65F5293DE1B900233151 /* Main.storyboard */; };
@@ -24,13 +24,12 @@
 		604E86DF29ABB7F80026F6A0 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E86DE29ABB7F80026F6A0 /* WeatherViewModel.swift */; };
 		604E86E229ACD3170026F6A0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E86E129ACD3170026F6A0 /* SettingsTableViewController.swift */; };
 		604E86E429ACD3990026F6A0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E86E329ACD3990026F6A0 /* SettingsViewModel.swift */; };
-		60672E12297446AD0073BD7A /* RainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60672E11297446AD0073BD7A /* RainTableViewController.swift */; };
 		6067B2A5293F55E9006C60A1 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6067B2A4293F55E9006C60A1 /* NotificationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		603689A32958784B009C9945 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		603689A529587B29009C9945 /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
+		603689A529587B29009C9945 /* dayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dayCollectionViewCell.swift; sourceTree = "<group>"; };
 		603C65EC293DE1B900233151 /* RainAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		603C65EF293DE1B900233151 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		603C65F1293DE1B900233151 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +48,6 @@
 		604E86DE29ABB7F80026F6A0 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		604E86E129ACD3170026F6A0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		604E86E329ACD3990026F6A0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		60672E11297446AD0073BD7A /* RainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainTableViewController.swift; sourceTree = "<group>"; };
 		6067B2A4293F55E9006C60A1 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,9 +112,8 @@
 			children = (
 				603C65F5293DE1B900233151 /* Main.storyboard */,
 				603C65FD293DE1BA00233151 /* LaunchScreen.storyboard */,
-				603689A529587B29009C9945 /* DayCollectionViewCell.swift */,
+				603689A529587B29009C9945 /* dayCollectionViewCell.swift */,
 				603689A32958784B009C9945 /* MainViewController.swift */,
-				60672E11297446AD0073BD7A /* RainTableViewController.swift */,
 				604E86E129ACD3170026F6A0 /* SettingsTableViewController.swift */,
 			);
 			path = View;
@@ -206,7 +203,7 @@
 			files = (
 				60429673298266D60075C69B /* Keys.swift in Sources */,
 				604E86E229ACD3170026F6A0 /* SettingsTableViewController.swift in Sources */,
-				603689A629587B29009C9945 /* DayCollectionViewCell.swift in Sources */,
+				603689A629587B29009C9945 /* dayCollectionViewCell.swift in Sources */,
 				603C65FA293DE1B900233151 /* RainAlert.xcdatamodeld in Sources */,
 				604E86DF29ABB7F80026F6A0 /* WeatherViewModel.swift in Sources */,
 				604E86E429ACD3990026F6A0 /* SettingsViewModel.swift in Sources */,
@@ -215,7 +212,6 @@
 				604E86DD29ABB75E0026F6A0 /* Rain.swift in Sources */,
 				6067B2A5293F55E9006C60A1 /* NotificationViewModel.swift in Sources */,
 				603C65F0293DE1B900233151 /* AppDelegate.swift in Sources */,
-				60672E12297446AD0073BD7A /* RainTableViewController.swift in Sources */,
 				603C65F2293DE1B900233151 /* SceneDelegate.swift in Sources */,
 				603C6608293DE41E00233151 /* WeatherModel.swift in Sources */,
 				6042967529826DAA0075C69B /* WeatherData.swift in Sources */,

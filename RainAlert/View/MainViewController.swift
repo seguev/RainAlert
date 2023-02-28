@@ -9,13 +9,12 @@ import UIKit
 import WeatherKit
 import CoreLocation
 
-let updateChangesInForcastArrayNotification = Notification.Name(UUID().uuidString)
 let settingsDidChangeNotification = Notification.Name("settingsDidChange")
 
 class MainViewController: UIViewController, UICollectionViewDelegate, WeatherViewModelDelegate, NotificationViewModelDelegate {
 
+    @IBOutlet weak var forecastTableView: UITableView!
     @IBOutlet weak var notificationButton: UIButton!
-    @IBOutlet weak var setRainNotificationButton: UIButton!
     @IBOutlet weak var currentWeatherView: UIView!
     @IBOutlet weak var currentConditionLabel: UILabel!
     @IBOutlet weak var upperActivityIndicator: UIActivityIndicatorView!
@@ -41,7 +40,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, WeatherVie
         print(#function)
 
         initialSetup()
-        addObservers()
+        
         weatherViewModel.delegate = self
         notificationViewModel.delegate = self
         
@@ -67,11 +66,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, WeatherVie
 
     }
 
-    private func addObservers () {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateMinuteArrayToNotifyProps(_:)), name: updateChangesInForcastArrayNotification, object: nil)
-        
-    }
+
 
      private func initialSetup() {
         setCurrentViewShadow()
@@ -151,20 +146,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, WeatherVie
     
     
     
-    @IBAction func rainButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "toRainTable", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let destinationVC = segue.destination as? RainTableViewController else {return}
-        
-        destinationVC.sheetPresentationController?.detents = .init(arrayLiteral: .medium())
-        
-        destinationVC.rainForecast = rainForecast
 
-
-    }
     
     @objc func updateMinuteArrayToNotifyProps (_ notification:Notification) {
         let updatedArray = notification.object as! [Rain]
@@ -232,6 +214,73 @@ extension MainViewController : UICollectionViewDelegateFlowLayout {
     
     
     
+    
+}
+
+extension MainViewController : UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if !rainForecast.isEmpty {
+            return rainForecast.count
+        } else {
+            return 0
+        }
+    }
+
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard !rainForecast.isEmpty else {return UITableViewCell()}
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rainCell", for: indexPath)
+        
+        var content = cell.defaultContentConfiguration()
+
+        
+        let forecast = rainForecast[indexPath.row]
+        
+        let time = weatherViewModel.formattedCellDate(start: forecast.start, end: forecast.end)
+        
+        let precipitation = rainForecast[indexPath.row].PrecipitationType
+        content.image = pickCellImage(PrecipitationType: precipitation)
+
+        content.text = "\(rainForecast[indexPath.row].description) \(time)"
+        
+        cell.contentConfiguration = content
+        
+        
+        cell.accessoryType = rainForecast[indexPath.row].isSelected ? .checkmark : .none
+        
+        
+        return cell
+    }
+    
+     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        var isSelected = rainForecast[indexPath.row].isSelected
+        let precipitation = rainForecast[indexPath.row].PrecipitationType
+        
+        isSelected = !isSelected
+                
+        rainForecast[indexPath.row].isSelected = isSelected
+        
+        let notificationDate = rainForecast[indexPath.row].start
+        if isSelected {
+            notificationViewModel.notify(when: notificationDate,type: precipitation)
+        } else {
+            notificationViewModel.removeNotification(notificationDate)
+        }
+        
+        tableView.reloadData()
+    }
+
     
 }
 
